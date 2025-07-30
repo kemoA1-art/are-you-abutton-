@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>هل أنت زرار؟</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: #f0f8ff;
+      text-align: center;
+      padding-top: 50px;
+      color: #333;
+      margin: 0;
+      padding: 1rem;
+    }
+
+    img {
+      width: 150px;
+      margin: 20px auto;
+      display: block;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    button {
+      font-size: 1.2rem;
+      padding: 10px 20px;
+      margin: 10px;
+      cursor: pointer;
+      background-color: #eee;
+      border: 2px solid #999;
+      border-radius: 10px;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background-color: #ddd;
+    }
+
+    .response {
+      margin-top: 30px;
+      font-size: 1.4rem;
+      color: #0077cc;
+      min-height: 60px;
+    }
+
+    #podcastBtn {
+      display: none;
+      margin-top: 20px;
+      background-color: #ff4b5c;
+      color: white;
+      border: none;
+      font-size: 1.2rem;
+      padding: 12px 24px;
+      border-radius: 12px;
+    }
+
+    #podcastBtn:hover {
+      background-color: #ff2e44;
+    }
+
+    @media (max-width: 500px) {
+      h1 {
+        font-size: 1.7rem;
+      }
+      .response {
+        font-size: 1.1rem;
+      }
+      button, #podcastBtn {
+        font-size: 1rem;
+        padding: 10px 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1 id="question">هل أنت زرار؟</h1>
+  <img src="https://i.postimg.cc/jqy1H3tj/file-00000000db6c6246ba7ed1c443ff32b4.png" alt="زرار بيراقبك">
+  <div class="buttons" id="btnContainer">
+    <button onclick="answer('yes')">نعم</button>
+    <button onclick="answer('no')">لأ</button>
+  </div>
+  <div class="response" id="responseText"></div>
+
+  <button id="podcastBtn" onclick="window.location.href='https://button-bodcast.vercel.app/'">🎧 اسمع بودكاست زرار</button>
+
+  <script>
+    const questions = [
+      "هل أنت زرار بيتغسل؟ 🧼",
+      "زرارك الداخلي مخلوع؟ 😅",
+      "بتحس بإحراج لما يتفك زرار؟ 😳",
+      "هل تفضل البناطيل بزرائر ولا سوستة؟",
+      "كم مرة اتخيطت في حياتك؟",
+      "زرار وتحب تلعب كورة؟ 😂",
+      "لو شافوك وسط الزرائر.. هيعرفوك؟",
+      "هل عندك صديق كبسولة؟ 💊",
+      "بتخاف من المقص؟ ✂️",
+      "هل بتعتبر نفسك زرار متعدد المهام؟"
+    ];
+
+    const yesReplies = [
+      "زرار أصيل يا جدع 🔘",
+      "واضح إنك زرار رايق 👕",
+      "ثبت نفسك وخليك جامد 💪",
+      "منور يا زرور ✨",
+      "انت زرار وأنا فخور بيك 😎"
+    ];
+
+    const noReplies = [
+      "كلنا زرائر من جوا 🥹",
+      "مكنتش متوقعك تنكر كده 😢",
+      "أهو كده.. الزرائر بقوا قليلين 🤷🏻‍♂️",
+      "يلا معلش.. كنت هتبقى زرار جامد 😔",
+      "إنت زرار حتى لو مش معترف 🤡"
+    ];
+
+    let currentQuestion = 0;
+
+    function answer(choice) {
+      const replyArr = choice === 'yes' ? yesReplies : noReplies;
+      const reply = replyArr[Math.floor(Math.random() * replyArr.length)];
+
+      document.getElementById('responseText').textContent = reply;
+
+      currentQuestion++;
+      if (currentQuestion < questions.length) {
+        setTimeout(() => {
+          document.getElementById('question').textContent = questions[currentQuestion];
+          document.getElementById('responseText').textContent = "";
+        }, 1500);
+      } else {
+        setTimeout(() => {
+          document.getElementById('question').textContent = "خلاص يا زرار.. انت جاوبت على كل الأسئلة 🎉";
+          document.getElementById('btnContainer').style.display = "none";
+          document.getElementById('responseText').textContent = "لو عايز تعرف أكتر عن نفسك كزرار... جرب البودكاست!";
+          document.getElementById('podcastBtn').style.display = "inline-block";
+        }, 2000);
+      }
+    }
+  </script>
+</body>
+</html>
